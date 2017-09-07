@@ -183,6 +183,8 @@ return [
         Intervention\Image\ImageServiceProvider::class,
         Syscover\ShoppingCart\ShoppingCartServiceProvider::class,
         Gloudemans\Shoppingcart\ShoppingcartServiceProvider::class,
+
+        LaravelCaptcha\Providers\LaravelCaptchaServiceProvider::class,
     ],
 
     /*

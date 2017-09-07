@@ -4,8 +4,54 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "f97e538806a2ad5350b27553cae0771a",
+    "content-hash": "257f0eed99cff85cc5f62ff4b88a9658",
     "packages": [
+        {
+            "name": "bonecms/laravel-captcha",
+            "version": "v1.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/bonecms/laravel-captcha.git",
+                "reference": "865c2cb21fd9184cbc12978da2e78ebccd357465"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/bonecms/laravel-captcha/zipball/865c2cb21fd9184cbc12978da2e78ebccd357465",
+                "reference": "865c2cb21fd9184cbc12978da2e78ebccd357465",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.4.0"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.0-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "LaravelCaptcha\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Dmitriy Igoshev",
+                    "email": "dmitry.igo@gmail.com"
+                }
+            ],
+            "description": "Captcha integration for the Laravel 5",
+            "homepage": "https://github.com/bonecms/laravel-captcha",
+            "keywords": [
+                "Laravel Captcha",
+                "captcha"
+            ],
+            "time": "2017-02-02T09:07:14+00:00"
+        },
         {
             "name": "dnoegel/php-xdg-base-dir",
             "version": "0.1",

@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\User;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Http\Request;
+use LaravelCaptcha\Facades\Captcha;
 
 class LoginController extends Controller
 {
@@ -44,6 +45,19 @@ class LoginController extends Controller
 //    =====================================
 //    =====================================
 
+    public function showLoginForm()
+    {
+        return view('auth.login',['captcha' => Captcha::html()]);
+    }
+
+    protected function validateLogin(Request $request)
+    {
+        $this->validate($request, [
+            $this->username() => 'required|string',
+            'password' => 'required|string',
+            'captcha' => 'required|bone_captcha'
+        ]);
+    }
 
     public function login(Request $request)
     {
@@ -83,6 +97,7 @@ class LoginController extends Controller
     {
         $credentials = $request->only($this->username(), 'password');
         // Customization: validate if client status is active (1)
+
         $credentials['confirmed'] = 1;
         return $credentials;
     }

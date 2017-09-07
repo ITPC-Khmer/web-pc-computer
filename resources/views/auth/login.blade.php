@@ -58,6 +58,11 @@
                                                 </span>
                                             @endif
                                         </div>
+                                        <div class="form-group{{ $errors->has('captcha') ? ' has-error' : '' }}">
+                                            <label class="control-label">{{_t('captcha')}}</label>
+                                            {!! $captcha !!}
+                                            <input type="text" id="captcha" name="captcha">
+                                        </div>
                                         <!--  <input type="submit" value="" class="btn btn-primary" /> -->
                                         <button type="submit" class="button login">{{_t('Login')}}</button>
                                         <label class="rememberme mt-checkbox mt-checkbox-outline">
