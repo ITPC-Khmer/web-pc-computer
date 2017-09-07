@@ -45,7 +45,7 @@
                                             <input type="email" name="email" value="{{ old('email') }}" placeholder="{{_t('Email Address')}}" id="email" class="form-control" />
                                             @if ($errors->has('email'))
                                                 <span class="help-block">
-                                                    <strong>{{ $errors->first('email') }}</strong>
+                                                    <strong style="color: red;">{{ $errors->first('email') }}</strong>
                                                 </span>
                                             @endif
                                         </div>
@@ -54,14 +54,19 @@
                                             <input type="password" name="password" value="" placeholder="{{_t('Password')}}" id="password" class="form-control" />
                                             @if ($errors->has('password'))
                                                 <span class="help-block">
-                                                    <strong>{{ $errors->first('password') }}</strong>
+                                                    <strong style="color: red;">{{ $errors->first('password') }}</strong>
                                                 </span>
                                             @endif
                                         </div>
                                         <div class="form-group{{ $errors->has('captcha') ? ' has-error' : '' }}">
-                                            <label class="control-label">{{_t('captcha')}}</label>
+                                           {{-- <label class="control-label">{{_t('captcha')}}</label>--}}
                                             {!! $captcha !!}
                                             <input type="text" id="captcha" name="captcha">
+                                            @if ($errors->has('captcha'))
+                                                <span class="help-block">
+                                                    <strong style="color: red;">{{ $errors->first('captcha') }}</strong>
+                                                </span>
+                                            @endif
                                         </div>
                                         <!--  <input type="submit" value="" class="btn btn-primary" /> -->
                                         <button type="submit" class="button login">{{_t('Login')}}</button>
