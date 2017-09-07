@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers\Auth;
 
+use App\Notifications\ConfirmMail;
 use App\User;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\RegistersUsers;
 
 class RegisterController extends Controller
@@ -19,6 +21,7 @@ class RegisterController extends Controller
     | provide this functionality without requiring any additional code.
     |
     */
+    use Notifiable;
 
     use RegistersUsers;
 
@@ -70,18 +73,38 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        return User::create([
-            'name' => $data['name'],
-            'phone' => $data['phone'],
-            'province_city' => $data['province_city'],
-            'location_type' => $data['location_type'],
-            'house_number' => $data['house_number'],
-            'road' => $data['road'],
-            'sangkat' => $data['sangkat'],
-            'khan' => $data['khan'],
-            'direction_guide' => $data['direction_guide'],
-            'email' => $data['email'],
-            'password' => bcrypt($data['password']),
-        ]);
+       /* return User::create([
+            '' => $data['name'],
+            '' => $data['phone'],
+            '' => $data['province_city'],
+            '' => $data['location_type'],
+            '' => $data['house_number'],
+            '' => $data['road'],
+            '' => $data['sangkat'],
+            '' => $data['khan'],
+            '' => $data['direction_guide'],
+            '' => $data['email'],
+            '' => bcrypt($data['password']),
+        ]);*/
+
+        $user = new User();
+
+        $user->name  = $data['name'];
+        $user->phone  = $data['phone'];
+        $user->province_city  = $data['province_city'];
+        $user->location_type  = $data['location_type'];
+        $user->house_number  = $data['house_number'];
+        $user->road  = $data['road'];
+        $user->sangkat  = $data['sangkat'];
+        $user->khan  = $data['khan'];
+        $user->direction_guide  = $data['direction_guide'];
+        $user->email  = $data['email'];
+        $user->password  = bcrypt($data['password']);
+
+        if($user->save()) {
+            $user->notify(new ConfirmMail());
+        }
+        return $user;
+
     }
 }

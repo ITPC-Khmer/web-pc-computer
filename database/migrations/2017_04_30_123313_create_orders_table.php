@@ -17,8 +17,8 @@ class CreateOrdersTable extends Migration
             $table->increments('id');
             $table->integer('user_id');
             $table->integer('view_alert')->default(0)->nullable();
-            $table->enum('paid')->default(0)->nullable();
-            $table->enum('cancel')->default(0)->nullable();
+            $table->integer('paid')->default(0)->nullable();
+            $table->integer('cancel')->default(0)->nullable();
             $table->date('delivery_date')->nullable();
             $table->time('delivery_time')->nullable();
             $table->longtext('order_detail')->nullable();
