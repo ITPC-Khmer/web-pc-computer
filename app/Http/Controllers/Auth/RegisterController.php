@@ -89,6 +89,10 @@ class RegisterController extends Controller
 
         $user = new User();
 
+        $random_hash = bin2hex(random_bytes(32));
+
+        $user->confirmed  = 0;
+        $user->confirmation_code  = $random_hash;
         $user->name  = $data['name'];
         $user->phone  = $data['phone'];
         $user->province_city  = $data['province_city'];
@@ -102,7 +106,8 @@ class RegisterController extends Controller
         $user->password  = bcrypt($data['password']);
 
         if($user->save()) {
-            $user->notify(new ConfirmMail());
+
+            $user->notify(new ConfirmMail($user));
         }
         return $user;
 

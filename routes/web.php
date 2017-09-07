@@ -7,6 +7,19 @@
 //   $x = session('x');
 //   return $x;
 //});
+
+Route::get('/confirmed-email/{confirmation_code}',function ($confirmation_code){
+    $m = \App\User::where('confirmation_code',$confirmation_code)->first();
+    if($m != null){
+        $m->confirmed = 1;
+        if($m->save()){
+            return redirect('login');
+        }
+    }
+
+    return 'Your Email not yet confirm!!';
+});
+
 Auth::routes();
 Route::group(['namespace' => 'Frontend','middleware'=>'auth'], function (){
     Route::get('/reset-password/{id?}','HomeController@resetPassword');

@@ -43,7 +43,7 @@ class ConfirmMail extends Notification
     {
         return (new MailMessage)
                     ->line('The introduction to the notification.')
-                    ->action('Notification Action', url('/xxx/'.$this->user->id))
+                    ->action('confirmed email', url('/confirmed-email/'.$this->user->confirmation_code))
                     ->line('Thank you for using our application!');
     }
 
